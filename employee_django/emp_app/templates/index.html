@@ -1,0 +1,94 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Index</title>-->
+<!--      <meta charset="utf-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container-fluid">-->
+<!--<h3 style="color:blue;">Registraion Form</h3>-->
+<!--<div class="row">-->
+<!--<form method="POST" class="post-form">-->
+<!--        {% csrf_token %}-->
+<!--    <div class="col-sm-6">{{form}}</div>-->
+<!--    <div class="col-sm-6">{{form2}}</div>-->
+
+
+<!--    <button type="submit" class="save btn btn-default">Save</button>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Employee App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h3 align="center">  Registration Form</h3>
+
+<div class="container-fluid">
+    <form method="post" action="">
+        <div class="columns" >
+            <div class="span3">
+                <h1 class="form-signin-heading"><font color="red">User Form</font></h1>
+                  <div class="col" style="background-color:lavender;">
+                      {% csrf_token %}
+                        {{form.as_p}}
+                  </div>
+<!--                <button   type="submit" class="btn btn-primary">Submit</button>-->
+            </div>
+            <div class="span3">
+                <h1 class="form-signin-heading"><font color="red">University Form</font></h1>
+                  <div class="col" style="background-color:lavender;">
+                      {% csrf_token %}
+                        {{form2.as_p}}
+                  </div>
+            </div>
+            <div class="span3">
+                <h1 class="form-signin-heading"><font color="red">Academic Form</font></h1>
+                  <div class="col" style="background-color:lavender;">
+                      {% csrf_token %}
+                        {{form3.as_p}}
+                  </div>
+
+            </div>
+            <div class="span3">
+                <h1 class="form-signin-heading"><font color="red">Comapny Form</font></h1>
+                  <div class="col" style="background-color:lavender;">
+                      {% csrf_token %}
+                        {{form4.as_p}}
+                  </div>
+            </div>
+            <div class="span3">
+                <h1 class="form-signin-heading"><font color="red">Experience Form</font></h1>
+                  <div class="col" style="background-color:lavender;">
+                      {% csrf_token %}
+                        {{form5.as_p}}
+                  </div>
+            </div>
+        </div>
+             <button   type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+
+
+</body>
+</html>
+

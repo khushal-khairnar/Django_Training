@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="btn btn-info btn-lg" href="">Home</a>
+        <a class="btn btn-info btn-lg" href="">Carrers</a>
+        <a class="btn btn-info btn-lg" href="">Quiz</a>
+        <a class="btn btn-info btn-lg" href="">Contact Us</a>
+        <a class="btn btn-info btn-lg" href="">About Us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="btn btn-info btn-lg" href="">Home</a>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
+    </nav>
+    {% endif %}
+<!--        <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--            <ul class="navbar-nav">-->
+<!--                <li class="nav-item active">-->
+<!--                    &lt;!&ndash;                <a class="btn btn-info btn-lg" href="user_registration">Registration <span class="sr-only">(current)</span></a>&ndash;&gt;-->
+
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+
+        <!--    This is for registraion -->
+        <div class="modal fade" id="myRegister" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--                    <h4 class="modal-title">Modal Header</h4>-->
+                    </div>
+                    <div class="modal-body">
+                        <div class="signup-form">
+                            {% if form.errors %}
+                            {% for field in form %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <form action="{% url 'user_registration' %}" method="post">
+                                {% csrf_token %}
+                                <h2>Register</h2>
+                                <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="username" placeholder="User Name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="password1" placeholder="Password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="password2" placeholder="Confirm Password"
+                                           required="required">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+                                </div>
+                            </form>
+                            <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--</nav>-->
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--                    <h4 class="modal-title">Modal Header</h4>-->
+                    </div>
+                    <div class="modal-body">
+                        <div class="signup-form">
+                            {% if form.errors %}
+                            {% for field in form %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <form method="post" action="/">
+                                {% csrf_token %}
+                                <h2>Login</h2>
+                                <p class="hint-text">Please enter your details to login.</p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="username" placeholder="User Name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+                                </div>
+                            </form>
+                            <div class="text-center">Create New <a href="{% url 'user_registration'  %}">Signup</a></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+
+</body>
+</html>
